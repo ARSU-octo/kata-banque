@@ -7,11 +7,20 @@ class Compte:
         self._solde = solde
         pass
 
+
+    def maj_solde(self, nouveauSolde):
+        self._solde = nouveauSolde
+        result = Bdd.majCompte(self)
+        return result
+
+
     @staticmethod
     def recuperer_compte(id):
         compte_bd = Bdd.recuperer_compte_bdd(id)
 
         # Transforme résultat BD en compte
         # ...
-
-        return Compte(compte_bd['id_compte'], compte_bd['solde'])
+        if compte_bd['status'] == 'GET COMPTE OK':
+            return Compte(compte_bd['id_compte'], compte_bd['solde'])
+        else:
+            return compte_bd

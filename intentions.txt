@@ -5,3 +5,18 @@
 3. Si on met à jour le solde avec une nouvelle valeur 100 Alors la MAJ du solde est effectuée dans la BD
 
 # BDD
+1. Si on demande un compte avec id=2 et qu'un compte existe avec cet id,
+   Alors la Bdd renvoie un Json de la forme { 'id_compte': 2, 'solde': ...,
+    'status': 'GET COMPTE OK'}
+2. Si on demande de mettre à jour le compte dont l'id=1 dont le solde était précédemment
+enregistré à 500, et dont le nouveau solde est maintenant 1000, Alors le nouveau
+solde enregistré est 1000 et le Json { 'status': 'MAJ OK' } est renvoyé
+3. Si on demande un compte avec id=200 et que ce compte n'existe pas avec cet id,
+   Alors la Bdd renvoie un Json tel que { 'status': 'Erreur getCompte : compte
+   inexistant' }
+4. Si on demande de mettre à jour le compte dont l'id=200 et que ce compte n'est pas
+enregistré, Alors la Bdd renvoie un Json tel que { 'status': 'Erreur majCompte:
+compte inexistant' }
+5. Si on demande de mettre à jour le compte dont l'id=1, et dont le nouveau solde est
+maintenant 'frite', la Bdd renvoie un Json { 'status': 'Erreur majCompte: format du
+nouveau solde incorrect' }
