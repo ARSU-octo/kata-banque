@@ -20,3 +20,35 @@ compte inexistant' }
 5. Si on demande de mettre à jour le compte dont l'id=1, et dont le nouveau solde est
 maintenant 'frite', la Bdd renvoie un Json { 'status': 'Erreur majCompte: format du
 nouveau solde incorrect' }
+
+
+# Transactions
+1. Si on crée une transaction avec:
+- un compte existant, tel que { 'id_compte': 1, 'solde': 1000 }
+- un type = depot
+- une date = 25/02/2020
+- un montant de 500
+ALORS
+on a une transaction créée avec type, depot et montant correspondants,
+et la balance est de 1500
+
+2. Si on crée une transaction avec:
+- un compte existant, tel que { 'id_compte': 1, 'solde': 1000 }
+- un type = retrait
+- une date = 25/02/2020
+- un montant de 500
+ALORS
+on a une transaction créée avec type, depot et montant correspondants,
+et la balance est de 500
+
+3. Si on crée une transaction avec:
+- un compte existant, tel que { 'id_compte': 1, 'solde': 1000 }
+- un type = frite
+- une date = 25/02/2020
+- un montant de 500
+ALORS
+on a une erreur "ERREUR : TYPE TRANSACTION INVALIDE"
+
+4. Si on sauvegarde une instance de transaction,
+Alors la fonction de sauvegarde en base est appelee et True est retourne
+par la fonction de sauvegarde
